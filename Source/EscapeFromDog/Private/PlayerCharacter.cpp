@@ -20,11 +20,15 @@ void APlayerCharacter::BeginPlay()
 void APlayerCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	
+	UnNoise(DeltaTime);
 }
 
 void APlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
+	
+	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &APlayerCharacter::JumpNoise);
 	
 	PlayerInputComponent->BindAxis("Forward", this, &APlayerCharacter::MoveForward);
 	PlayerInputComponent->BindAxis("Right", this, &APlayerCharacter::MoveRight);
@@ -51,4 +55,23 @@ void APlayerCharacter::Turn(float Value)
 void APlayerCharacter::LookUp(float Value)
 {
 	AddControllerPitchInput(Value);
+}
+
+void APlayerCharacter::JumpNoise()
+{
+	Jump();
+	
+	Noise = 100.0f;
+}
+
+void APlayerCharacter::UnNoise(float DeltaTime)
+{
+	if (Noise > 1.0f)
+	{
+		Noise = FMath::FInterpTo(Noise, 0.0f, DeltaTime, 0.5f);
+	}
+	else if (Noise <= 1.0f)
+	{
+		Noise = 0.0f;
+	}
 }

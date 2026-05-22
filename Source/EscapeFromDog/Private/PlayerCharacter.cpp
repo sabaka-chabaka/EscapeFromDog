@@ -1,8 +1,9 @@
 // copyright 2026 sabaka-chabaka
 
 #include "EscapeFromDog/Public/PlayerCharacter.h"
-
+#include "EscapeFromDog/Public/Key.h"
 #include "Camera/CameraComponent.h"
+#include "Kismet/GameplayStatics.h"
 
 APlayerCharacter::APlayerCharacter()
 {
@@ -29,6 +30,7 @@ void APlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 	
 	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &APlayerCharacter::JumpNoise);
+	PlayerInputComponent->BindAction("Collect", IE_Pressed, this, &APlayerCharacter::Collect);
 	
 	PlayerInputComponent->BindAxis("Forward", this, &APlayerCharacter::MoveForward);
 	PlayerInputComponent->BindAxis("Right", this, &APlayerCharacter::MoveRight);
@@ -73,5 +75,18 @@ void APlayerCharacter::UnNoise(float DeltaTime)
 	else if (Noise <= 1.0f)
 	{
 		Noise = 0.0f;
+	}
+}
+
+void APlayerCharacter::Collect()
+{
+	FHitResult Hit;
+	if (GetWorld()->LineTraceSingleByChannel(Hit, Camera->GetComponentLocation(), Camera->GetComponentLocation() + Camera->GetForwardVector() * 1000.0f, ECC_Visibility))
+	{
+		if (AKey* Key = Cast<AKey>(Hit.GetActor()))
+		{
+			Key->SetActorHiddenInGame(true);
+			Keys.Add(Key);
+		}
 	}
 }

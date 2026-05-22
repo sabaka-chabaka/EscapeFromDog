@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Key.h"
 #include "GameFramework/Character.h"
 #include "PlayerCharacter.generated.h"
 
@@ -33,6 +34,11 @@ protected:
 	void JumpNoise();
 	
 	void UnNoise(float DeltaTime);
+	
+	void Collect();
+	
+	UPROPERTY()
+	TArray<AKey*> Keys;
 	
 public:
 	float Noise;

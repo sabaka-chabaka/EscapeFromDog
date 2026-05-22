@@ -2,7 +2,7 @@
 
 #include "Key.h"
 
-AKey::AKey()
+ADoorKey::ADoorKey()
 {
 	PrimaryActorTick.bCanEverTick = false;
 	

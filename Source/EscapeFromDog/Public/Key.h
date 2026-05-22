@@ -7,12 +7,12 @@
 #include "Key.generated.h"
 
 UCLASS()
-class ESCAPEFROMDOG_API AKey : public AActor
+class ESCAPEFROMDOG_API ADoorKey : public AActor
 {
 	GENERATED_BODY()
 
 public:
-	AKey();
+	ADoorKey();
 
 	UPROPERTY(EditAnywhere)
 	class UStaticMeshComponent* Mesh;

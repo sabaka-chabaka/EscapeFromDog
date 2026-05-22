@@ -88,7 +88,7 @@ void APlayerCharacter::Collect()
 	FHitResult Hit;
 	if (GetWorld()->LineTraceSingleByChannel(Hit, Camera->GetComponentLocation(), Camera->GetComponentLocation() + Camera->GetForwardVector() * 1000.0f, ECC_Visibility))
 	{
-		if (AKey* Key = Cast<AKey>(Hit.GetActor()))
+		if (ADoorKey* Key = Cast<ADoorKey>(Hit.GetActor()))
 		{
 			Key->SetActorHiddenInGame(true);
 			Keys.Add(Key);

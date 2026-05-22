@@ -41,7 +41,7 @@ protected:
 	void Collect();
 	
 	UPROPERTY()
-	TArray<AKey*> Keys;
+	TArray<ADoorKey*> Keys;
 	
 public:
 	float Noise;

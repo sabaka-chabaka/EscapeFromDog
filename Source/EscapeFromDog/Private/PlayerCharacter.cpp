@@ -39,6 +39,11 @@ void APlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 	PlayerInputComponent->BindAxis("Look", this, &APlayerCharacter::LookUp);
 }
 
+bool APlayerCharacter::CanEnd() const
+{
+	return Keys.Num() == 10;
+}
+
 void APlayerCharacter::MoveForward(float Value)
 {
 	AddMovementInput(GetActorForwardVector(), Value);

@@ -20,6 +20,9 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+	
+	UFUNCTION(Blueprintable)
+	bool CanEnd() const;
 		
 protected:
 	UPROPERTY(EditAnywhere, Category="Camera")

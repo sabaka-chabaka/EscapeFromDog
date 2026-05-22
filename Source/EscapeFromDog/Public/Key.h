@@ -16,7 +16,4 @@ public:
 
 	UPROPERTY(EditAnywhere)
 	class UStaticMeshComponent* Mesh;
-	
-	UPROPERTY(EditAnywhere)
-	bool bCollected;
 };
